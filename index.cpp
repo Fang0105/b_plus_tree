@@ -84,7 +84,7 @@ void Index::split_node(Node* &node){
             int mid = level/2;
 
             //把keys和children分成兩邊
-            int midian = node->keys[mid]; //先把中間值取出來，因為internal node的split不會保留中間值
+            int median = node->keys[mid]; //先把中間值取出來，因為internal node的split不會保留中間值
             l_node->keys.assign(node->keys.begin(), node->keys.begin()+mid);
             l_node->children.assign(node->children.begin(), node->children.begin()+mid+1);
             r_node->keys.assign(node->keys.begin()+mid+1, node->keys.end());
@@ -103,8 +103,8 @@ void Index::split_node(Node* &node){
             
             Node* new_root = new Node(false);
 
-            //把midian放到new_root中
-            new_root->keys.push_back(midian);
+            //把median放到new_root中
+            new_root->keys.push_back(median);
 
             //把左右兩個新的節點加到新的root的children中
             new_root->children.push_back(l_node);
@@ -154,7 +154,7 @@ void Index::split_node(Node* &node){
         int mid = level/2;
 
         //把keys和children分成兩邊
-        int midian = node->keys[mid]; //先把中間值取出來，因為internal node的split不會保留中間值
+        int median = node->keys[mid]; //先把中間值取出來，因為internal node的split不會保留中間值
         l_node->keys.assign(node->keys.begin(), node->keys.begin()+mid);
         l_node->children.assign(node->children.begin(), node->children.begin()+mid+1);
         r_node->keys.assign(node->keys.begin()+mid+1, node->keys.end());
@@ -183,9 +183,9 @@ void Index::split_node(Node* &node){
             n->parent = r_node;
         }
 
-        //把midian提到parent
-        int index = lower_bound(l_node->parent->keys.begin(), l_node->parent->keys.end(), midian) - l_node->parent->keys.begin();
-        l_node->parent->keys.insert(l_node->parent->keys.begin()+index, midian);
+        //把median提到parent
+        int index = lower_bound(l_node->parent->keys.begin(), l_node->parent->keys.end(), median) - l_node->parent->keys.begin();
+        l_node->parent->keys.insert(l_node->parent->keys.begin()+index, median);
 
         //把new_node加到parent的children
         node->parent->children.insert(node->parent->children.begin()+index+1, r_node); //這裡有可能錯
