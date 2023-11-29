@@ -90,6 +90,7 @@ void Index::split_node(Node* &node){
             r_node->keys.assign(node->keys.begin()+mid+1, node->keys.end());
             r_node->children.assign(node->children.begin()+mid+1, node->children.end());
 
+            //原本的node不需要了所以delete
             delete node;
 
             //更新左右兩個新node的children的parent
@@ -171,6 +172,7 @@ void Index::split_node(Node* &node){
         l_node->parent = node->parent;
         r_node->parent = node->parent;
 
+        //原本的node不需要了所以delete
         delete node;
 
         //更新左右兩個新node的children的parent
