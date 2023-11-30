@@ -141,7 +141,7 @@ void Index::split_node(Node* &node){
         node->parent->keys.insert(node->parent->keys.begin()+index, median);
 
         //把new_node加到parent的children
-        node->parent->children.insert(node->parent->children.begin()+index+1, new_node); //這裡有可能錯
+        node->parent->children.insert(node->parent->children.begin()+index+1, new_node);
         
         //如果parent爆了，就要split
         if(new_node->parent->keys.size() >= level){
