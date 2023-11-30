@@ -59,8 +59,8 @@ void Index::split_node(Node* &node){
             node->values.erase(node->values.begin()+mid, node->values.end());
 
             //把leaf的linked list接好
-            new_node->next_leaf = node->next_leaf; //這裡有可能錯
-            node->next_leaf = new_node; //這裡有可能錯
+            new_node->next_leaf = node->next_leaf; 
+            node->next_leaf = new_node; 
 
             Node* new_root = new Node(false);
 
@@ -129,8 +129,8 @@ void Index::split_node(Node* &node){
         node->values.erase(node->values.begin()+mid, node->values.end());
 
         //把leaf的linked list接好
-        new_node->next_leaf = node->next_leaf; //這裡有可能錯
-        node->next_leaf = new_node; //這裡有可能錯
+        new_node->next_leaf = node->next_leaf; 
+        node->next_leaf = new_node; 
 
         //node和new_node的parent要一樣
         new_node->parent = node->parent;
@@ -188,7 +188,7 @@ void Index::split_node(Node* &node){
         l_node->parent->keys.insert(l_node->parent->keys.begin()+index, median);
 
         //把new_node加到parent的children
-        node->parent->children.insert(node->parent->children.begin()+index+1, r_node); //這裡有可能錯
+        l_node->parent->children.insert(l_node->parent->children.begin()+index+1, r_node); //這裡有可能錯
 
         //如果parent爆了，就要split
         if(l_node->parent->keys.size() >= level){
